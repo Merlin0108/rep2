@@ -40,7 +40,7 @@ def play_game():
             print("Ты победил!")
             return 0
         if stones == 0:
-            print("You loose")
+            print("Компьютер выйграл")
             return 0
         stones = computer_turn(stones)
         print("Колличество оставшихся камней:", stones)
