@@ -4,7 +4,7 @@ import random
 def validate_input(choice):
     try:
         choice = int(choice)
-        if choice < 1 or choice > 3:
+        if choice < 1 or choice > 7:
             raise ValueError
         return choice
     except ValueError:
