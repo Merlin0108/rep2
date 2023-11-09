@@ -2,14 +2,11 @@ import re
 
 
 def get_input():
-    try:
-        user_input = input("Введите строку: ")
-        if user_input == '':
-            raise KeyboardInterrupt
-        return user_input
-    except KeyboardInterrupt:
+    user_input = input("Введите строку: ")
+    if user_input == '':
         print("\nПрограмма завершена пользователем.")
         exit()
+    return user_input
 
 
 def clean_whitespace(input_str):
@@ -39,9 +36,6 @@ def process_input(input_str):
     return result_str
 
 
-try:
-    user_input = get_input()
-    result = process_input(user_input)
-    print("Отформатированная строка:", result)
-except Exception as e:
-    print("Ошибка:", e)
+user_input = get_input()
+result = process_input(user_input)
+print("Отформатированная строка:", result)
