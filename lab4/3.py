@@ -5,7 +5,7 @@ def validate_input(choice):
     try:
         choice = int(choice)
         if choice < 1 or choice > 3:
-            raise ValueError("Неправильный выбор. Пожалуйста выберите 1, 2 или 3 камня.")
+            raise ValueError
         return choice
     except ValueError:
         print("Введено не число или неправильное колличество камней")
