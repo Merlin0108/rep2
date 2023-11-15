@@ -1,6 +1,6 @@
 def scalar_product(vector1, vector2):
     if len(vector1) != len(vector2):
-        return print("Vector dimensions are not equal")
+        return print("Размеры вектора не равны")
     result = 0
     for i in range(len(vector1)):
         result += vector1[i] * vector2[i]
@@ -9,9 +9,9 @@ def scalar_product(vector1, vector2):
 
 def input_vector():
     vector = []
-    n = int(input("Enter the dimension of the vector: "))
+    n = int(input("Введите размер вектора: "))
     for i in range(n):
-        value = int(input(f"Enter the {i + 1}th element of the vector: "))
+        value = int(input(f"Введите {i + 1}й элемент вектора: "))
         vector.append(value)
     return vector
 
@@ -19,4 +19,4 @@ def input_vector():
 vector1 = input_vector()
 vector2 = input_vector()
 product = scalar_product(vector1, vector2)
-print("The scalar product of the two vectors is:", product)
+print("Скалярное произведение двух векторов равно:", product)

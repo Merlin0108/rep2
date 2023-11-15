@@ -1,65 +1,48 @@
-def get_matrix_dimensions():
-    while True:
-        try:
-            m = int(input("Enter the number of rows for the first matrix: "))
-            k = int(input(
-                "Enter the number of columns for the first matrix and the number of rows for the second matrix: "))
-            n = int(input("Enter the number of columns for the second matrix: "))
-
-            if m > 0 and k > 0 and n > 0:
-                return m, k, n
-            else:
-                raise ValueError
-        except ValueError:
-            print("Invalid dimensions. Please enter positive integers only.")
-
-
-def get_matrix_values(rows, cols):
+def input_matrix(rows, cols):
     matrix = []
     for i in range(rows):
-        row = []
-        for j in range(cols):
-            while True:
-                try:
-                    value = float(input(f"Enter the value for element ({i + 1, j + 1}): "))
-                    row.append(value)
-                    break
-                except ValueError:
-                    print("Invalid value. Please enter a valid float number.")
-        matrix.append(row)
+        while True:
+            try:
+                row = list(map(float, input(f"Введите {cols} элементов {i + 1}-й строки через пробел: ").split()))
+                if len(row) != cols:
+                    raise ValueError("Количество элементов в строке не соответствует заданному")
+                matrix.append(row)
+                break
+            except ValueError as err:
+                print(f"Ошибка: {err}")
     return matrix
 
 
 def multiply_matrices(matrix1, matrix2):
-    m = len(matrix1)
-    k = len(matrix1[0])
-    n = len(matrix2[0])
-
-    result_matrix = [[0] * n for _ in range(m)]
-    for i in range(m):
-        for j in range(n):
-            for h in range(k):
-                result_matrix[i][j] += matrix1[i][h] * matrix2[h][j]
-
-    return result_matrix
+    result = []
+    for i in range(len(matrix1)):
+        row = []
+        for j in range(len(matrix2[0])):
+            val = sum(matrix1[i][k] * matrix2[k][j] for k in range(len(matrix2)))
+            row.append(val)
+        result.append(row)
+    return result
 
 
-def display_matrix(matrix):
-    for row in matrix:
-        print(row)
+def main():
+    flag = 0
+    while flag == 0:
+        m = int(input("Введите количество строк для первой матрицы (M): "))
+        k = int(input("Введите количество столбцов для первой матрицы и количество строк для второй матрицы (K): "))
+        n = int(input("Введите количество столбцов для второй матрицы (N): "))
+        if m <= 0 or k <= 0 or n <= 0:
+            flag = 0
+            print("Ошибка")
+        else:
+            flag = 1
+    print("Введите элементы первой матрицы:")
+    matrix1 = input_matrix(m, k)
+    print("Введите элементы второй матрицы:")
+    matrix2 = input_matrix(k, n)
+    result = multiply_matrices(matrix1, matrix2)
+    print("Результат умножения матриц:")
+    for row in result:
+        print(' '.join(map(str, row)))
 
 
-m, k, n = get_matrix_dimensions()
-
-print("Enter the values for the first matrix:")
-matrix1 = get_matrix_values(m, k)
-
-print("Enter the values for the second matrix:")
-matrix2 = get_matrix_values(k, n)
-
-try:
-    result_matrix = multiply_matrices(matrix1, matrix2)
-    print("The product of the matrices is:")
-    display_matrix(result_matrix)
-except ValueError:
-    print("Matrix multiplication is not possible.")
+main()

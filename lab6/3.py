@@ -18,7 +18,7 @@ def find_mode(arr):
     if len(mode) != 1:
         raise ValueError("Массив не уникален")
 
-    return max_count,mode[0]
+    return max_count, mode[0]
 
 
 try:
