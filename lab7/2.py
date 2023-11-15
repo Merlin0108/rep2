@@ -7,6 +7,8 @@ def find_unique_chars(first_string, second_string):
             print(char, end='')
     except Exception as e:
         print("Ошибка:", str(e))
+
+
 first_string = input("Введите первую строку: ")
 second_string = input("Введите вторую строку: ")
 find_unique_chars(first_string, second_string)

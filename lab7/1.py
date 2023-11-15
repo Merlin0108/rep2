@@ -7,6 +7,8 @@ def count_unique_characters(text):
     except ValueError as e:
         print(e)
         return 0
+
+
 text = input("Введите строку текста: ")
 count = count_unique_characters(text)
 print("Количество уникальных символов:", count)
