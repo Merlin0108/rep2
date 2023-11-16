@@ -26,4 +26,4 @@ try:
     mode = find_mode(arr)
     print(mode[0], "раз(а) встречается число", mode[1])
 except ValueError as e:
-    print(e)
+    print("Ошибка:", e)

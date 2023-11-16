@@ -8,8 +8,8 @@ def input_matrix(rows, cols):
                     raise ValueError("Количество элементов в строке не соответствует заданному")
                 matrix.append(row)
                 break
-            except ValueError as err:
-                print(f"Ошибка: {err}")
+            except ValueError as e:
+                print(f"Ошибка: {e}")
     return matrix
 
 
@@ -25,16 +25,15 @@ def multiply_matrices(matrix1, matrix2):
 
 
 def main():
-    flag = 0
-    while flag == 0:
+    try:
         m = int(input("Введите количество строк для первой матрицы (M): "))
         k = int(input("Введите количество столбцов для первой матрицы и количество строк для второй матрицы (K): "))
         n = int(input("Введите количество столбцов для второй матрицы (N): "))
         if m <= 0 or k <= 0 or n <= 0:
-            flag = 0
-            print("Ошибка")
-        else:
-            flag = 1
+            raise ValueError("Введены нулевые матрицы")
+    except ValueError as e:
+        print(e)
+
     print("Введите элементы первой матрицы:")
     matrix1 = input_matrix(m, k)
     print("Введите элементы второй матрицы:")
