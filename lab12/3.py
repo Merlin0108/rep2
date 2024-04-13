@@ -4,7 +4,14 @@ def binary_representation(decimal_number):
     return binary_representation(decimal_number // 2) + str(decimal_number % 2)
 
 
-a = float(input("Введите нулевой элемент: "))
-# Двоичное представление десятичного числа
-binary = binary_representation(int(a))
-print(f"d) Двоичное представление десятичного числа {int(a)}: {binary}")
+try:
+    a = float(input("Введите нулевой элемент: "))
+    # Двоичное представление десятичного числа
+    binary = binary_representation(int(a))
+except ValueError:
+    print("Ошибка ввода. Пожалуйста, введите корректные числа.")
+    quit()
+except ZeroDivisionError:
+    print("Ошибка: деление на ноль.")
+    quit()
+print(f"Двоичное представление десятичного числа {int(a)}: {binary}")

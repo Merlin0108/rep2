@@ -8,8 +8,8 @@ def invert_string(string):
     return inverted_string
 
 
-input_string = input("Введите строку: ")
 try:
+    input_string = input("Введите строку: ")
     inverted = invert_string(input_string)
     print("Инвертированная строка:", inverted)
 except:
