@@ -1,12 +1,23 @@
-while True:
+def filter_words(start_string, words):
     try:
-        salary = float(input("Введите размер оклада сотрудника: "))
-        break
-    except ValueError:
-        print("Ошибка. Введите корректное число.")
+        if not isinstance(start_string, str) or not isinstance(words, str):
+            raise Exception("Введены некорректные данные. Пожалуйста, введите строки.")
 
-bonus = salary * 2 / 3
-net_salary = salary + bonus - (salary + bonus) * 0.13
+        control_word = start_string.strip()
+        if len(control_word) == 0:
+            raise Exception("Контрольная строка не должна быть пустой.")
 
-print(f"Квартальная премия: {bonus}")
-print(f"Сумма на руки с учётом налога: {net_salary}")
+        word_list = words.split(';')
+        filtered_words = [word.strip() for word in word_list if word.strip().startswith(control_word)]
+
+        return filtered_words
+
+    except Exception as e:
+        return f"Ошибка: {str(e)}"
+
+
+words_input = input("Введите 10 слов, разделенных точкой с запятой: ")
+control_input = input("Введите контрольную строку: ")
+
+result = filter_words(control_input, words_input)
+print(result)

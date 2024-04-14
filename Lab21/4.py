@@ -1,19 +1,25 @@
-def calculate_bmi(weight, height):
-    if weight <= 0 or height <= 0:
-        return "Некорректные данные"
+import re
+from collections import Counter
 
-    bmi = weight / (height ** 2)
-    return bmi
+def count_char_frequency(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            data = file.read().lower()
+            data = re.sub(r'[^a-zA-Zа-яА-Я]', '', data)  # Удаляем все символы, кроме букв
+
+            char_freq = Counter(data)
+
+            with open('res1.txt', 'w', encoding='utf-8') as res_file:
+                for char, freq in char_freq.items():
+                    res_file.write(f"{char}: {freq}\n")
+
+            print("Результат успешно записан в файл res1.txt")
+
+    except FileNotFoundError:
+        print("Файл не найден.")
+    except Exception as e:
+        print(f"Произошла ошибка: {e}")
 
 
-# Рассчет для человека с данными значениями
-weight1 = 108.85
-height1 = 1.85
-bmi1 = calculate_bmi(weight1, height1)
-print(f"Индекс массы тела для человека с ростом {height1} м и весом {weight1} кг: {bmi1}")
-
-# Ввод пользователем и рассчет ИМТ
-weight_user = float(input("Введите свой вес в килограммах: "))
-height_user = float(input("Введите свой рост в метрах: "))
-bmi_user = calculate_bmi(weight_user, height_user)
-print(f"Индекс массы тела для вас с ростом {height_user} м и весом {weight_user} кг: {bmi_user}")
+file_path = '4.txt'  # Замените на путь к вашему txt файлу
+count_char_frequency(file_path)

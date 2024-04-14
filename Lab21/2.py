@@ -1,29 +1,26 @@
-def check_input(prompt):
-    while True:
-        try:
-            value = float(input(prompt))
-            if value < 0:
-                raise ValueError
-            return value
-        except ValueError:
-            print("Пожалуйста, введите корректное число.")
+def calculate_sequence(n):
+    try:
+        if not isinstance(n, int) or n <= 0:
+            raise Exception("Введите положительное целое число.")
+
+        sequence = [n]
+        while n != 1:
+            if n % 2 == 0:
+                n //= 2
+            else:
+                n = 3 * n + 1
+            sequence.append(n)
+
+        peak = max(sequence)
+
+        return sequence, len(sequence), peak
+
+    except Exception as e:
+        return f"Ошибка: {str(e)}"
 
 
-employees = []
-total_bonus = 0
-
-for i in range(3):
-    name = input(f"Введите имя {i + 1}-го сотрудника: ")
-    salary = check_input(f"Введите размер оклада для {name}: ")
-
-    bonus = (2 / 3) * salary
-    net_salary = salary + bonus - (0.13 * (salary + bonus))
-
-    employees.append((name, bonus, net_salary))
-    total_bonus += bonus
-
-print("\nИнформация о премиях:")
-for employee in employees:
-    print(f"Сотрудник: {employee[0]}, Премия: {employee[1]}, На руки: {employee[2]}")
-
-print(f"\nОбщая сумма премий: {total_bonus}")
+number = 13
+result = calculate_sequence(number)
+print(f"Последовательность: {result[0]}")
+print(f"Количество элементов в последовательности: {result[1]}")
+print(f"Пик последовательности: {result[2]}")
