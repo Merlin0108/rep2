@@ -1,7 +1,6 @@
 import re
 
 
-# Функция для чтения данных из файла и парсинга информации
 def read_file(file_path):
     data = []
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -14,44 +13,29 @@ def read_file(file_path):
     return data
 
 
-# Функции для сортировки участников по имени и по баллам
-def sort_by_name(data):
-    return sorted(data, key=lambda x: x[0])
-
-
-def sort_by_score(data):
-    return sorted(data, key=lambda x: x[1])
-
-
-# Функция для вывода на консоль и сохранения в файл
 def output_participants(data, file_path, threshold):
     filtered_data = filter(lambda x: x[1] > threshold, data)
-
     with open(file_path, 'w', encoding='utf-8') as file:
         for item in filtered_data:
             file.write(item[0] + "\n")
 
 
-# Основная логика программы
 file_path = "3.txt"
 threshold = int(input("Введите пороговое значение для фильтрации участников: "))
 
 try:
     participants = read_file(file_path)
 
-    # Сортировка участников по имени
-    sorted_by_name = sort_by_name(participants)
+    sorted_by_name = sorted(participants, key=lambda x: x[0])
     print("Участники конкурса отсортированные по имени:")
     for item in sorted_by_name:
         print(item)
 
-    # Сортировка участников по баллам
-    sorted_by_score = sort_by_score(participants)
+    sorted_by_score = sorted(participants, key=lambda x: x[1])
     print("\nУчастники конкурса отсортированные по баллам:")
     for item in sorted_by_score:
         print(item)
 
-    # Вывод участников с результатом выше порога в файл
     output_participants(participants, "res.txt", threshold)
     print(f"\nИмена участников с результатом выше {threshold} сохранены в файл res.txt.")
 

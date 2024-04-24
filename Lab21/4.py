@@ -5,7 +5,7 @@ def count_char_frequency(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             data = file.read().lower()
-            data = re.sub(r'[^a-zA-Zа-яА-Я]', '', data)  # Удаляем все символы, кроме букв
+            data = re.sub(r'[^a-zA-Zа-яА-Я]', '', data)
 
             char_freq = Counter(data)
 
@@ -14,7 +14,6 @@ def count_char_frequency(file_path):
                     res_file.write(f"{char}: {freq}\n")
 
             print("Результат успешно записан в файл res1.txt")
-
     except FileNotFoundError:
         print("Файл не найден.")
     except Exception as e:

@@ -13,8 +13,7 @@ def list_files_by_extension(directory, extension):
     except FileNotFoundError as e:
         print(f"Error: {e}")
 
-if __name__ == "__main__":
-    directory = input("Enter the path to the directory: ")
-    extension = input("Enter the file extension to filter by (txt,tht,png,tt,jpg): ")
+directory = input("Enter the path to the directory: ")
+extension = input("Enter the file extension to filter by (txt,tht,png,tt,jpg): ")
 
-    list_files_by_extension(directory, extension)
+list_files_by_extension(directory, extension)
